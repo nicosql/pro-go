@@ -23,19 +23,19 @@ func (l *DefaultLogger) write(level LogLevel, message string) {
 
 func (l *DefaultLogger) Trace(msg string) { l.write(Trace, msg) }
 
-func (l *DefaultLogger) Tracef(template string, vals ...interface{}) {
+func (l *DefaultLogger) Tracef(template string, vals ...any) {
 	l.write(Trace, fmt.Sprintf(template, vals...))
 }
 func (l *DefaultLogger) Debug(msg string) { l.write(Debug, msg) }
-func (l *DefaultLogger) Debugf(template string, vals ...interface{}) {
+func (l *DefaultLogger) Debugf(template string, vals ...any) {
 	l.write(Debug, fmt.Sprintf(template, vals...))
 }
 func (l *DefaultLogger) Info(msg string) { l.write(Information, msg) }
-func (l *DefaultLogger) Infof(template string, vals ...interface{}) {
+func (l *DefaultLogger) Infof(template string, vals ...any) {
 	l.write(Information, fmt.Sprintf(template, vals...))
 }
 func (l *DefaultLogger) Warn(msg string) { l.write(Warning, msg) }
-func (l *DefaultLogger) Warnf(template string, vals ...interface{}) {
+func (l *DefaultLogger) Warnf(template string, vals ...any) {
 	l.write(Warning, fmt.Sprintf(template, vals...))
 }
 func (l *DefaultLogger) Panic(msg string) {
@@ -44,7 +44,7 @@ func (l *DefaultLogger) Panic(msg string) {
 		panic(msg)
 	}
 }
-func (l *DefaultLogger) Panicf(template string, vals ...interface{}) {
+func (l *DefaultLogger) Panicf(template string, vals ...any) {
 	formattedMsg := fmt.Sprintf(template, vals...)
 	l.write(Fatal, formattedMsg)
 	if l.triggerPanic {
